@@ -2,8 +2,12 @@
 <html lang="ru">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=320, maximum-scale=1">
+	<meta name="viewport" content="width=1024, maximum-scale=1">
 	<title>Андрей Бабинчук — Frontend-разработчик и веб-верстальщик</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="styles.min.css">
+	<link rel="stylesheet" type="text/css" href="slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -12,33 +16,73 @@
 	<link rel="manifest" href="site.webmanifest">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-	<script src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="slick/slick.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 	<header>
-		<section class="header-top">
+		<div class="header-top">
 			<div class="container container-flex">
-				<span class="header-top_float-element" id="header-top_float-element-1">{ }</span>
-				<span class="header-top_float-element" id="header-top_float-element-2">&lt;div&gt;</span>
-				<span class="header-top_float-element" id="header-top_float-element-3">#</span>
-				<span class="header-top_float-element" id="header-top_float-element-4">&lt;div&gt;</span>
-				<span class="header-top_float-element" id="header-top_float-element-5">&lt;/&gt;</span>
-				<nav class="header-nav">
+				<button class="header-nav-mobile_button"><i class="fa fa-times header-nav-mobile_button__close" aria-hidden="true"></i></button>
+				<nav class="header-nav header-nav-desktop">
 					<ul class="header-nav_list">
-						<li class="header-nav_list-item"><a href="#">Услуги</a></li>
-						<li class="header-nav_list-item_current">Портфолио</li>
-						<li class="header-nav_list-item"><a href="#">Стоимость</a></li>
+						<li class="header-nav_list-item"><a href="#services" class="header-nav_list-href">Услуги</a></li>
+						<li class="header-nav_list-item_current"><a href="#portfolio" class="header-nav_list-href">Портфолио</a></li>
+						<li class="header-nav_list-item"><a href="#price" class="header-nav_list-href">Стоимость</a></li>
 					</ul>
 				</nav>
 				<div class="header-phone">
 					<span class="header-phone_number">+7 (906) 755-7561</span>
-					<button class="header-phone_call">Заказать звонок</button>
+					<button class="header-phone_call-desktop callback-button">Заказать звонок</button>
+					<button class="header-phone_call-mobile callback-button"><i class="fas fa-phone fa-phone-mobile"></i></button>
 				</div>
 			</div>
-		</section>
-		<section class="header-info">
-			<div class="header-info_background">
-				<svg 
+		</div>
+	</header>
+	<div class="mobile-menu">
+		<div class="container">
+			<nav class="header-nav">
+				<ul class="header-nav">
+					<li class="header-nav_list-item"><a href="#services" class="header-nav_list-href">Услуги</a></li>
+					<li class="header-nav_list-item_current"><a href="#portfolio" class="header-nav_list-href">Портфолио</a></li>
+					<li class="header-nav_list-item"><a href="#price" class="header-nav_list-href">Стоимость</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="popup-container">
+		<div class="popup">
+			<h2>Заказать</h2>
+			<button class="popup-container_close">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</button>
+			<form class="popup-container_callback">
+				<p>Ваше имя:</p>
+				<input type="text" name="your-name" size="28" required="required" maxlength="100" class="popup-container_input">
+				<p>Ваш номер телефона:</p>
+				<input type="tel" name="your-phone-number" size="28" required="required" maxlength="13" class="popup-container_input">
+				<br>
+				<input type="submit" name="submit-callback" value="Заказать звонок" class="popup-container_submit">
+			</form>
+			<form class="popup-container_order">
+				<p>Ваше имя:</p>
+				<input type="text" name="your-name" size="28" required="required" maxlength="100" class="popup-container_input">
+				<p>Ваш e-mail:</p>
+				<input type="email" name="your-email" size="28" required="required" maxlength="100" class="popup-container_input">
+				<p>Ваш номер телефона:</p>
+				<input type="tel" name="your-phone-number" size="28" required="required" maxlength="13" class="popup-container_input">
+				<br>
+				<p>Краткое описание проекта:</p>
+				<textarea cols="28" maxlength="300" required="required" rows="4" class="popup-container_textarea"></textarea>
+				<input type="submit" name="submit-callback" value="Заказать проект" class="popup-container_submit">
+			</form>
+		</div>
+	</div>
+	<main>
+		<section class="info">
+			<div class="info_background-for-desktop">
+				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink">
 					<defs>
@@ -51,18 +95,23 @@
 		 			d="M395.520,40.407 C502.261,-10.049 602.994,-10.204 687.212,27.671 C771.647,65.238 839.568,140.836 885.703,234.785 C929.973,329.669 929.926,431.584 893.771,514.027 C857.115,597.700 796.105,660.782 712.966,705.804 C668.936,728.473 622.654,744.002 563.818,753.535 C505.757,762.929 435.142,766.325 360.325,761.479 C211.851,752.158 45.449,708.398 10.358,609.690 C-9.529,560.677 2.954,504.492 27.679,447.950 C52.809,391.326 90.181,334.346 129.419,281.835 C169.063,229.242 210.573,181.118 253.309,140.306 C296.450,99.410 340.817,65.827 395.520,40.407 L395.520,40.407 Z"/>
 				</svg>
 			</div>
+			<div class="info_background-for-tablet"></div>
 			<div class="container container-flex">
-				<div class="header-info_info">
-					<h1 class="header-info_name">Андрей Бабинчук</h1>
+				<span class="info_float-element" id="info_float-element-1">{ }</span>
+				<span class="info_float-element" id="info_float-element-2">&lt;div&gt;</span>
+				<span class="info_float-element" id="info_float-element-3">#</span>
+				<span class="info_float-element" id="info_float-element-4">&lt;div&gt;</span>
+				<span class="info_float-element" id="info_float-element-5">&lt;/&gt;</span>
+				<span class="info_float-element" id="info_float-element-6">&lt;/&gt;</span>
+				<div class="info_info">
+					<h1 class="info_name">Андрей Бабинчук</h1>
 					<p>Frontend-разработчик и веб-верстальщик</p><br>
-					<button class="header-info_more">Узнать больше</button>
+					<button class="info_more" name="services-button" onclick='location.href="#services"'>Узнать больше</button>
 				</div>
-					<div class="header-info_photo"></div>
+				<div class="info_photo"></div>
 			</div>
 		</section>
-	</header>
-	<main>
-		<section class="description">
+		<section class="description" id="services">
 			<div class="container">
 				<h2>Что я делаю</h2>
 				<ul	class="description_list">
@@ -100,36 +149,39 @@
 					</li>
 				</ul>
 				<p class="main-button">
-					<button>Узнать стоимость</button>
+					<button name="price-button" onclick='location.href="#price"'>Узнать стоимость</button>
 				</p>
 			</div>
 		</section>
-		<section class="portfolio">
+		<section class="portfolio" id="portfolio">
 			<div class="container">
 				<h2>Примеры моих работ</h2>
-				<button class="portfolio_button-left"></button>
-				<button class="portfolio_button-right"></button>
 				<ul class="portfolio_list">
-					<li class="portfolio_list-item">
+					<li class="portfolio_list-item first">
 						<p class="portfolio_list-item-img"><img src="img/hypnotherapy.jpg" alt="psychologist"></p>
 						<p class="portfolio_list-item-description">Сайт психолога Веры Антоновой</p>
 					</li>
-					<li class="portfolio_list-item">
+					<li class="portfolio_list-item second">
 						<p class="portfolio_list-item-img"><img src="img/child.jpg" alt="child"></p>
 						<p class="portfolio_list-item-description">Сайт магазина детской одеджы</p>
 					</li>
-					<li class="portfolio_list-item">
+					<li class="portfolio_list-item third">
 						<p class="portfolio_list-item-img"><img src="img/fish.jpg" alt="fish"></p>
 						<p class="portfolio_list-item-description">Сайт магазина &laquo;Рыболов&raquo;</p>
 					</li>
+					<li class="portfolio_list-item fourth">
+						<p class="portfolio_list-item-img"><img src="img/hypnotherapy.jpg" alt="psychologist"></p>
+						<p class="portfolio_list-item-description">Сайт психолога Веры Антоновой</p>
+					</li>
 				</ul>
-				<p class="main-button">
+				<p class="main-button order">
 					<button>Заказать проект</button>
 				</p>
 			</div>
 		</section>
-		<section class="price">
+		<section class="price" id="price">
 			<div class="container">
+				<h2>Стоимость работ</h2>
 				<span class="price_float-element" id="price_float-element-1">{ }</span>
 				<span class="price_float-element" id="price_float-element-2">#</span>
 				<span class="price_float-element" id="price_float-element-3">&lt;/&gt;</span>
@@ -145,7 +197,7 @@
 	</main>
 	<footer>
 		<div class="container">
-			<section class="footer-main">
+			<div class="footer-main">
 				<ul class="footer-nav">
 					<li class="footer-nav_item"><a href="#">Услуги</a></li>
 					<li class="footer-nav_item"><a href="#">Портфолио</a></li>
@@ -155,13 +207,13 @@
 					<li class="footer-contacts_phone">
 						<i class="fas fa-phone"></i>+7 (906) 755-7561
 					</li>
-					<li class="footercontacts_email">
+					<li class="footer-contacts_email">
 						<i class="fas fa-envelope"></i>
 						<a href="mailto:a.babinchuk@gmail.com">a.babinchuk@gmail.com</a>
 					</li>
 				</ul>
 				<div class="footer-feedback">
-					<button class="footer-feedback_phone-call">Заказать звонок</button>
+					<button class="footer-feedback_phone-call callback-button">Заказать звонок</button>
 					<ul class="footer-feedback_social">
 						<li><a href="#">
 							<div class="footer-feedback_social-vk"></div>
@@ -177,23 +229,11 @@
 						</a></li>
 					</ul>
 				</div>
-			</section>
+			</div>
 		</div>
-		<section class="footer-copyright">
+		<div class="footer-copyright">
 			<p>&copy;&nbsp;Андрей Бабинчук, 2017 — 2019</p>
-		</section>
+		</div>
 	</footer>
-	<script>
-		$(document).ready(function() {
-			var devWidth = ($(window).width());
-			var svgWidth = (813-(1920-devWidth)/2);
-			$('svg').width(svgWidth);
-		});
-		$(window).on('resize', function() {
-			var devWidth = ($(window).width());
-			var svgWidth = (813-(1920-devWidth)/2);
-			$('svg').width(svgWidth);
-		});
-	</script>
 </body>
 </html>
